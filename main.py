@@ -1,30 +1,31 @@
 students=[]
 
-print("Welcome to the student Data Organizer")
+print("Welcome to the Student Data Organizer")
 print()
 
 while True:
     print("1. Add student")
-    print("2. Display All Student")
+    print("2. Display All Students")
     print("3. Update Student Information")
     print("4. Delete student")
-    print("5. Dispaly subject offered")
+    print("5. Display Subjects Offered")
     print("6. Exit")
-    choice=(input("Enter your choice: "))
-    if choice=="1":
-        print("Enter Student details")
-        id=int(input("Enter a Student ID: "))
-        name=input("Enter a Student Name: ")
-        age=int(input("Enter a Student Age: "))
-        grade=input("Enter a Student Grade: ")
-        dob=input("Date of Birth (YYY-MM-DD): ")
-        subject=input("Subjects(comma-separated): ")
+    choice=int(input("Enter your choice: "))
+    print()
+    if choice == 1 :
+        print("Enter Student Details")
+        id=int(input("Enter Student ID: "))
+        name=input("Enter Student Name: ")
+        age=int(input("Enter Student Age: "))
+        grade=input("Enter Student Grade: ")
+        dob=input("Date of Birth (YYYY-MM-DD): ")
+        subject=input("Subjects (comma-separated): ")
+        print()
         
         id_dob=(id,dob)
-        subjects=set()
+        subjects=set(subject.split(","))
 
-        for x in subject.split(","):
-            subjects.add(x)
+         
 
         student={
             "name":name,
@@ -34,66 +35,83 @@ while True:
             "info":id_dob
         }
         students.append(student)
-        print("student added successfully")
-    elif choice=="2":
-        print("\n")
+        print("Student Added Successfully")
+        print()
+    elif choice == 2 :
         print("_ _ _ Display All Students _ _ _")
         for std in students:
             if len(students)!=0:
-                print(f"student name is :{std["name"]}")
-                print(f"student age is : {std["age"]}")
-                print(f"student grade is : {std["grade"]}")
-                print(f"student subject is : {std["subject"]}")
-                print(f"student id is : {std["info"][0]}")
-                print(f"student dob: {std ["info"][1]}")
-
-    elif choice=="3":
+                print(f"Student ID: {std["info"][0]}| Name: {std["name"]}| Age: {std["age"]}| Grade: {std["grade"]}| Subjects: {std["subject"]}| DOB: {std["info"][1]}")
+                print("...")
+            print()
+    elif choice == 3 :
         std_id=int(input("Enter a student id: "))
         for std in students:
             if std ["info"][0]==std_id:
         
-                print("1. for update name: ")
-                print("2. for update age:  ")
-                print("3. for update grade: ")
-                print("4. for update subjects: ")
+                print("1. Update Name: ")
+                print("2. Update Age:  ")
+                print("3. Update Grade: ")
+                print("4. Update Subjects: ")
 
                 std_choice = int(input("Enter your choice between 1 to 4 : "))
 
                 if std_choice == 1:
-                    new_name = input("enter the new name: ")
+                    new_name = input("Enter the New Name: ")
                     std["name"]=new_name
-                    print("student name updated successfully")
+                    print("Student Name Updated Successfully")
+                    print()
+                    
+
                 elif std_choice == 2:
-                    new_age=int(input("enter new age: "))
-                    std["age"]=age
-                    print("Age update successfully")
+                    new_age=int(input("Enter New Age: "))
+                    std["age"]=new_age
+                    print("Student Age Updated Successfully")
+                    print()
+                    
                 elif std_choice==3:
-                    new_grade=input("enter a new grade: ")
-                    std["grade"]=grade
-                    print("student Grade updated successfully")
+                    new_grade=input("Enter a New Grade: ")
+                    std["grade"]=new_grade
+                    print("Student Grade Updated Successfully")
+                    print()
+                    
                 elif std_choice==4:
-                    new_subject=input("enter new subject: ")
-                    std["subject"]=subject
-                    print("Subject Update Successfully")
-                else:
-                    print("student update scuessfully!")
-
-
+                    new_subject=input("Enter New Subjects: ")
+                    std["subject"]=new_subject
+                    subjects=set(subject.split(","))
+                    print("Subject Updated Successfully")
+                    print()
+                
+            
             else:
-                print("id are not found")
+                print("Student ID not found")
+        print()
 
-    
-    elif choice=="4":
-        student_id=int(input("Enter a student id"))
+    elif choice == 4 :
+        student_id=int(input("Enter a Student ID: "))
         for x in students:
             if x ["info"][0]==student_id:
                 students.remove(x)
-                print("student remove successfully!")     
+                print("Student Removed Successfully!")
+                print()
+                break
+            
         else:
-            print("student id not found")
+            print("Student ID not found")
 
+    elif choice==5 :
+                a =set()
+                for i in students:
+                    for x in i["subject"]:
+                        a.add(x)
+                for subj in a:
+                    print(subj)
+                print()
 
-
-    elif choice=="6":
-        print("Exit Successfully!")
+    elif choice == 6 :
+        print("Exited Successfully!")
         break
+
+    else:
+        print("Invalid Choice! Please try again.")
+        print()
