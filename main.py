@@ -76,12 +76,11 @@ while True:
                     print()
                     
                 elif std_choice==4:
-                    new_subject=input("Enter New Subjects: ")
-                    std["subject"]=new_subject
-                    subjects=set(subject.split(","))
-                    print("Subject Updated Successfully")
-                    print()
-                
+                   new_subject=input("Enter New Subjects: ")
+                   subjects=set(new_subject.split(","))
+                   std["subject"]=subjects
+                   print("Subject Updated Successfully")
+                   print()  
             
             else:
                 print("Student ID not found")
